@@ -6,8 +6,10 @@ import java.util.Vector;
  * @author: alta189
  */
 public class Queue {
+	@SuppressWarnings("rawtypes")
 	Vector queue = new Vector();
 
+	@SuppressWarnings("unchecked")
 	public void add(Object obj) {
 		synchronized(queue) {
 			queue.add(obj);
@@ -15,6 +17,7 @@ public class Queue {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void addFront(Object obj) {
 		synchronized(queue) {
 			queue.add(0, obj);

@@ -3,10 +3,11 @@ package com.alta189.chavabot;
 /**
  * @author: alta189
  */
+@SuppressWarnings("unused")
 public class Responses {
 	private static Responses instance = new Responses();
 
-	// About Chava Responses \\
+	// About ChavaBot Responses \\
 	private final String build = "0";
 	private final String built = "INDEV";
 	private final String author = "alta189";
