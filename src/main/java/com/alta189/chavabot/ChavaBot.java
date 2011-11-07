@@ -1,5 +1,7 @@
 package com.alta189.chavabot;
 
-public class ChavaBot {
+import org.jibble.pircbot.PircBot;
+
+public class ChavaBot extends PircBot {
 
 }
