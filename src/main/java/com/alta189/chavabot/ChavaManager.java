@@ -10,6 +10,10 @@ public class ChavaManager {
 	private static ChavaManager instance;
 	private PluginManager pManager;
 	
+	private ChavaManager() {
+		//pManager = new SimplePluginManager();
+	}
+	
 	public static ChavaManager getInstance() {
 		if (instance != null) {
 			instance = new ChavaManager();
