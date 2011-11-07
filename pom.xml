@@ -10,13 +10,6 @@
 	
 	<!-- Dependencies -->
 	<dependencies>
-		<dependency>
-			<groupId>pircbot</groupId>
-			<artifactId>pircbot</artifactId>
-			<version>1.5.0</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
