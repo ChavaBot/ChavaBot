@@ -3,7 +3,7 @@ package com.alta189.chavabot.plugins;
 import java.util.logging.Logger;
 
 public interface Plugin {
-	
+
 	public abstract PluginDescriptionFile getDescription();
 
 	public abstract void onEnable();
@@ -12,7 +12,7 @@ public interface Plugin {
 
 	public abstract void onLoad();
 
-	public abstract PluginLoader getAddonLoader();
+	public abstract PluginLoader getPluginLoader();
 
 	public abstract boolean isEnabled();
 

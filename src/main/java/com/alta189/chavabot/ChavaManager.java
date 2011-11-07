@@ -1,5 +1,6 @@
 package com.alta189.chavabot;
 
+import java.io.File;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -27,6 +28,11 @@ public class ChavaManager {
 
 	public static PluginManager getPluginManager() {
 		return getInstance().pManager;
+	}
+
+	public File getUpdateFolder() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
