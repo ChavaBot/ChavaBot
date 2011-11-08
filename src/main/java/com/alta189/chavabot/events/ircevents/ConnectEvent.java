@@ -6,16 +6,18 @@ public class ConnectEvent extends IrcEvent<ConnectEvent> {
 	private static final ConnectEvent instance = new ConnectEvent();
 	private static final HandlerList<ConnectEvent> handlers = new HandlerList<ConnectEvent>();
 	
+	public static ConnectEvent getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public HandlerList<ConnectEvent> getHandlers() {
-		// TODO Auto-generated method stub
-		return null;
+		return handlers;
 	}
-
+	
 	@Override
 	protected String getEventName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Connect Event";
 	}
 	
 }
