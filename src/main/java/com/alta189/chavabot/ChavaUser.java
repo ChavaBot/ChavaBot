@@ -1,21 +1,20 @@
 package com.alta189.chavabot;
 
-public class User {
-	private String nick;
+public class ChavaUser {
+	private final String nick;
 	private final String hostname;
 	private final String login;
-	private String prefix;
-	private final Channel channel;
+	private final String[] channels;
 	
-	public User(String nick, String login, String hostname, Channel channel) {
+	public ChavaUser(String nick, String login, String hostname, String[] channels) {
 		this.nick = nick;
 		this.login = login;
 		this.hostname = hostname;
-		this.channel = channel;
+		this.channels = channels;
 	}
 	
-	public Channel getParentChannel() {
-		return this.channel;
+	public String[] getChannels() {
+		return this.channels;
 	}
 	
 	public boolean hasVoice() {
@@ -32,16 +31,8 @@ public class User {
 		return nick;
 	}
 	
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-	
 	public String getPrefix() {
-		return prefix;
-	}
-	
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
+		return null;
 	}
 	
 	public String getHostname() {
@@ -52,5 +43,7 @@ public class User {
 		return login;
 	}
 	
-	
+	public boolean isValid() {
+		return (login != null || hostname != null);
+	}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jibble.pircbot.User;
+
 public class Channel {
 	private Map<String, User> users = new HashMap<String, User>();
 	private String motd;

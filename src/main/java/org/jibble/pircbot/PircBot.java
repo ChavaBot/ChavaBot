@@ -2349,7 +2349,7 @@ public abstract class PircBot implements ReplyConstants {
      *
      * @param name The new name of the Bot.
      */
-    protected final void setName(String name) {
+    public final void setName(String name) {
         _name = name;
     }
     
@@ -2372,7 +2372,7 @@ public abstract class PircBot implements ReplyConstants {
      *
      * @param login The new login of the Bot.
      */
-    protected final void setLogin(String login) {
+    public final void setLogin(String login) {
         _login = login;
     }
     

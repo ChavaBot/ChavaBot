@@ -1,9 +1,13 @@
 package com.alta189.chavabot;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import org.jibble.pircbot.IrcException;
+import org.jibble.pircbot.NickAlreadyInUseException;
 
 import com.alta189.chavabot.plugins.Plugin;
 import com.alta189.chavabot.plugins.PluginManager;
@@ -15,12 +19,13 @@ public class ChavaManager {
 	private static ChavaManager instance;
 	private SimplePluginManager pluginManager;
 	private String pluginFolder = "plugins";
+	private ChavaBot bot = null;
 	
 	private ChavaManager() {
 	}
 	
 	public static ChavaManager getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ChavaManager();
 			instance.pluginManager = new SimplePluginManager(instance);
 		}
@@ -71,6 +76,18 @@ public class ChavaManager {
 
 	public File getUpdateFolder() {
 		return new File(pluginFolder + File.separator + "updates");
+	}
+
+	public void start(Options options) throws NickAlreadyInUseException, IOException, IrcException {
+		if (bot == null) {
+			bot = new ChavaBot();
+			bot.setHost(options.getHost());
+			bot.setLogin(options.getLogin());
+			bot.setPort(options.getPort());
+			bot.setNick(options.getNick());
+			bot.setVerbose(options.isVerbose());
+			bot.connect();
+		}
 	}
 
 }
