@@ -1,38 +1,45 @@
 package com.alta189.chavabot;
 
+import java.util.List;
+
 public class ChavaUser {
 	private final String nick;
 	private final String hostname;
 	private final String login;
-	private final String[] channels;
+	private final List<String> channels;
 	
-	public ChavaUser(String nick, String login, String hostname, String[] channels) {
+	public ChavaUser(String nick, String login, String hostname, List<String> channels) {
 		this.nick = nick;
 		this.login = login;
 		this.hostname = hostname;
 		this.channels = channels;
 	}
 	
-	public String[] getChannels() {
+	public List<String> getChannels() {
 		return this.channels;
 	}
 	
-	public boolean hasVoice() {
-		if (getPrefix() == null) return false;
-		return getPrefix().equalsIgnoreCase("+");
+	public boolean hasVoice(String channel) {
+		return getPrefix(channel).equals("+");
 	}
 	
-	public boolean isOp() {
-		if (getPrefix() == null) return false;
-		return getPrefix().equalsIgnoreCase("@");
+	public boolean isOp(String channel) {
+		return getPrefix(channel).equals("@");
 	}
 	
 	public String getNick() {
 		return nick;
 	}
 	
-	public String getPrefix() {
-		return null;
+	public String getPrefix(String channel) {
+		for (String chan : channels) {
+			if (chan.equalsIgnoreCase(channel)) {
+				return "";
+			} else if (chan.substring(1).equalsIgnoreCase(channel)) {
+				return chan.substring(0,1);
+			}
+		}
+		return "";
 	}
 	
 	public String getHostname() {

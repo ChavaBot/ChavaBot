@@ -9,10 +9,11 @@ public class MessageEvent extends ChannelEvent<MessageEvent> {
 	private static final HandlerList<MessageEvent> handlers = new HandlerList<MessageEvent>();
 	private String message;
 	
-	public static void getInstance(ChavaUser argUser, Channel channel, String message) {
+	public static MessageEvent getInstance(ChavaUser argUser, Channel channel, String message) {
 		instance.user = argUser;
 		instance.channel = channel;
 		instance.message = message;
+		return instance;
 	}
 	
 	public String getMessage() {

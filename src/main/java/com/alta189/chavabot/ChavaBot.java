@@ -47,6 +47,22 @@ public class ChavaBot {
 		if (!bot.isConnected()) bot.setLogin(login);
 	}
 	
+	public Channel getChannel(String channel) {
+		for (Channel chan : channels) {
+			if (chan.equals(channel)) 
+				return chan;
+		}
+		return null;
+	}
+	
+	public void updateChannel(String channel) {
+		channels.remove(channel);
+		Channel chan = new Channel(channel);
+		chan.addUsers(bot.getUsers(channel));
+		chan.setMotd(bot.getMotd(channel));
+		channels.add(chan);
+	}
+	
 	public List<Channel> getChannels() {
 		return channels;
 	}

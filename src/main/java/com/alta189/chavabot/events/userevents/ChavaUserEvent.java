@@ -6,14 +6,14 @@ import com.alta189.chavabot.events.HandlerList;
 public class ChavaUserEvent extends UserEvent<ChavaUserEvent> {
 	private static final ChavaUserEvent instance = new ChavaUserEvent();
 	private static final HandlerList<ChavaUserEvent> handlers = new HandlerList<ChavaUserEvent>();
-	private ChavaUser cu;
 	
-	public static ChavaUserEvent getInstance(ChavaUser cu) {
+	public static ChavaUserEvent getInstance(ChavaUser user) {
+		instance.user = user;
 		return instance;
 	}
 	
 	public ChavaUser getChavaUser() {
-		return cu;
+		return user;
 	}
 	
 	@Override
