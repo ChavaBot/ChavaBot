@@ -8,6 +8,7 @@ import org.jibble.pircbot.PircBot;
 
 import com.alta189.chavabot.events.botevents.InvitedEvent;
 import com.alta189.chavabot.events.botevents.PrivateMessageEvent;
+import com.alta189.chavabot.events.botevents.ServerPingEvent;
 import com.alta189.chavabot.events.channelevents.ChannelKickEvent;
 import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
 import com.alta189.chavabot.events.channelevents.JoinEvent;
@@ -175,7 +176,8 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onServerPing(String response) {
-		super.onServerPing(response);
+		ChavaManager.getPluginManager().callEvent(ServerPingEvent.getInstance(response));
+		this.sendRawLine("PONG" + response);
 	}
 
 	@Override
