@@ -57,7 +57,7 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onJoin(String channel, String sender, String login, String hostname) {
 		parent.updateChannel(channel);
-		ChavaManager.getPluginManager().callEvent(JoinEvent.getInstance(new ChavaUser(sender, login, hostname, null), parent.getChannel(channel)));
+		ChavaManager.getPluginManager().callEvent(JoinEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
 	public synchronized void sendWhois(String nick) {
@@ -91,7 +91,7 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onMessage(String channel, String sender, String login, String hostname, String message) {
-		ChavaManager.getPluginManager().callEvent(MessageEvent.getInstance(new ChavaUser(sender, login, hostname, null), parent.getChannel(channel), message));
+		ChavaManager.getPluginManager().callEvent(MessageEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel, message));
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onPart(String channel, String sender, String login, String hostname) {
 		parent.updateChannel(channel);
-		ChavaManager.getPluginManager().callEvent(PartEvent.getInstance(new ChavaUser(sender, login, hostname, null), parent.getChannel(channel)));
+		ChavaManager.getPluginManager().callEvent(PartEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class SimplePircBot extends PircBot {
 			parent.updateChannel(channel);
 			chan  = parent.getChannel(channel);
 		}
-		ChavaManager.getPluginManager().callEvent(ChannelKickEvent.getInstance(user, chan, recipientNick, reason));
+		ChavaManager.getPluginManager().callEvent(ChannelKickEvent.getInstance(user, channel, recipientNick, reason));
 	}
 
 	@Override
@@ -137,31 +137,17 @@ public class SimplePircBot extends PircBot {
 			parent.updateChannel(channel);
 			chan  = parent.getChannel(channel);
 		}
-		ChavaManager.getPluginManager().callEvent(ChannelVoiceEvent.getInstance(user, chan, recipient));
+		ChavaManager.getPluginManager().callEvent(ChannelVoiceEvent.getInstance(user, channel, recipient));
 	}
 
 	@Override
 	protected void onSetChannelBan(String channel, String sourceNick, String sourceLogin, String sourceHostname, String hostmask) {
-		Channel chan = parent.getChannel(channel);
-		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
-		if (chan != null) {		
-		} else {
-			parent.updateChannel(channel);
-			chan  = parent.getChannel(channel);
-		}
-		ChavaManager.getPluginManager().callEvent(SetChannelBanEvent.getInstance(user, chan, hostmask));
+		ChavaManager.getPluginManager().callEvent(SetChannelBanEvent.getInstance(new ChavaUser(sourceNick,sourceLogin,sourceHostname, null), channel, hostmask));
 	}
 
 	@Override
 	protected void onSetModerated(String channel, String sourceNick, String sourceLogin, String sourceHostname) {
-		Channel chan = parent.getChannel(channel);
-		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
-		if (chan != null) {		
-		} else {
-			parent.updateChannel(channel);
-			chan  = parent.getChannel(channel);
-		}
-		ChavaManager.getPluginManager().callEvent(SetModeratedEvent.getInstance(user, chan));
+		ChavaManager.getPluginManager().callEvent(SetModeratedEvent.getInstance(new ChavaUser(sourceNick,sourceLogin,sourceHostname, null), channel));
 	}
 
 	@Override

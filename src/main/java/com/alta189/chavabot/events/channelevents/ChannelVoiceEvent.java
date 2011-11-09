@@ -1,23 +1,33 @@
 package com.alta189.chavabot.events.channelevents;
 
-import com.alta189.chavabot.Channel;
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
 
 public class ChannelVoiceEvent extends ChannelEvent<ChannelVoiceEvent> {
 	private static final ChannelVoiceEvent instance = new ChannelVoiceEvent();
 	private static final HandlerList<ChannelVoiceEvent> handlers = new HandlerList<ChannelVoiceEvent>();
-	private String hostmask;
+	private String recipient;
+	private ChavaUser user;
+	private String channel;
 	
-	public static ChannelVoiceEvent getInstance(ChavaUser argUser, Channel channel, String hostmask) {
+	
+	public static ChannelVoiceEvent getInstance(ChavaUser argUser, String channel, String recipient) {
 		instance.user = argUser;
 		instance.channel = channel;
-		instance.hostmask = hostmask;
+		instance.recipient = recipient;
 		return instance;
 	}
+	
+	public String getChannel() {
+		return channel;
+	}
+	
+	public ChavaUser getUser() {
+		return user;
+	}
 
-	public String getHostmask() {
-		return hostmask;
+	public String getRecipient() {
+		return recipient;
 	}
 
 	@Override

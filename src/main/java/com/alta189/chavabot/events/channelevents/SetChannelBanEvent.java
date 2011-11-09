@@ -1,6 +1,5 @@
 package com.alta189.chavabot.events.channelevents;
 
-import com.alta189.chavabot.Channel;
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
 
@@ -8,14 +7,24 @@ public class SetChannelBanEvent extends ChannelEvent<SetChannelBanEvent> {
 	private static final SetChannelBanEvent instance = new SetChannelBanEvent();
 	private static final HandlerList<SetChannelBanEvent> handlers = new HandlerList<SetChannelBanEvent>();
 	private String hostmask;
+	private ChavaUser user;
+	private String channel;
 	
-	public static SetChannelBanEvent getInstance(ChavaUser argUser, Channel channel, String hostmask) {
+	public static SetChannelBanEvent getInstance(ChavaUser argUser, String channel, String hostmask) {
 		instance.user = argUser;
 		instance.channel = channel;
 		instance.hostmask = hostmask;
 		return instance;
 	}
-
+	
+	public String getChannel() {
+		return channel;
+	}
+	
+	public ChavaUser getUser() {
+		return user;
+	}
+	
 	public String getHostmask() {
 		return hostmask;
 	}
