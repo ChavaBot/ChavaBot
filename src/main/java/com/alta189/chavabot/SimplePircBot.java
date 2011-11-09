@@ -10,6 +10,7 @@ import com.alta189.chavabot.events.botevents.InvitedEvent;
 import com.alta189.chavabot.events.botevents.PrivateMessageEvent;
 import com.alta189.chavabot.events.botevents.ServerPingEvent;
 import com.alta189.chavabot.events.channelevents.ChannelKickEvent;
+import com.alta189.chavabot.events.channelevents.ChannelOpEvent;
 import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
 import com.alta189.chavabot.events.channelevents.JoinEvent;
 import com.alta189.chavabot.events.channelevents.MessageEvent;
@@ -82,6 +83,18 @@ public class SimplePircBot extends PircBot {
 		motds.remove(channel);
 		motds.put(channel, topic);
 		parent.updateChannel(channel);
+	}
+
+	@Override
+	protected void onOp(String channel, String sourceNick, String sourceLogin, String sourceHostname, String recipient) {
+		Channel chan = parent.getChannel(channel);
+		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
+		if (chan != null) {		
+		} else {
+			parent.updateChannel(channel);
+			chan  = parent.getChannel(channel);
+		}
+		ChavaManager.getPluginManager().callEvent(ChannelOpEvent.getInstance(user, channel, recipient));
 	}
 
 	@Override
