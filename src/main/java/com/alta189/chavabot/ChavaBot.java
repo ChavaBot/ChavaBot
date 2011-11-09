@@ -7,6 +7,7 @@ import java.util.List;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
+import com.alta189.chavabot.events.botevents.KickEvent;
 import com.alta189.chavabot.events.botevents.SendMessageEvent;
 import com.alta189.chavabot.events.botevents.SendNoticeEvent;
 import com.alta189.chavabot.events.userevents.NickChangeEvent;
@@ -110,6 +111,17 @@ public class ChavaBot {
 		SendNoticeEvent event = SendNoticeEvent.getInstance(notice, target);
 		if (!event.isCancelled()) {
 			bot.sendNotice(event.getTarget(), event.getNotice());
+		}
+	}
+	
+	public void kick(String channel, String nick) {
+		kick(channel,nick,null);
+	}
+	
+	public void kick(String channel, String nick, String reason) {
+		KickEvent event = KickEvent.getInstance(channel, nick, reason);
+		if (!event.isCancelled()) {
+			bot.kick(event.getChannel(), event.getRecipient());
 		}
 	}
 
