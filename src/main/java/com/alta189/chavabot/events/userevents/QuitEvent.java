@@ -29,7 +29,7 @@ public class QuitEvent extends UserEvent<QuitEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "";
+		return "Quit Event";
 	}
 
 }

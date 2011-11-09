@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.jibble.pircbot.PircBot;
 
+import com.alta189.chavabot.botevents.PrivateMessageEvent;
 import com.alta189.chavabot.events.channelevents.JoinEvent;
 import com.alta189.chavabot.events.channelevents.MessageEvent;
 import com.alta189.chavabot.events.channelevents.PartEvent;
@@ -12,11 +13,18 @@ import com.alta189.chavabot.events.ircevents.ConnectEvent;
 import com.alta189.chavabot.events.ircevents.DisconnectEvent;
 import com.alta189.chavabot.events.userevents.ActionEvent;
 import com.alta189.chavabot.events.userevents.ChavaUserEvent;
+import com.alta189.chavabot.events.userevents.NoticeEvent;
 import com.alta189.chavabot.events.userevents.QuitEvent;
 
 public class SimplePircBot extends PircBot {
 	private final ChavaBot parent;
 	private WhoisResult whoisResult;
+
+	@Override
+	protected void onNotice(String sourceNick, String sourceLogin, String sourceHostname, String target, String notice) {
+		ChavaManager.getPluginManager().callEvent(NoticeEvent.getInstance(new ChavaUser(sourceNick, sourceLogin, sourceHostname, null), target, notice));
+	}
+
 	private boolean waitWhois = false;
 	private Map<String, String> motds = new HashMap<String, String>();
 
@@ -31,6 +39,11 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onConnect() {
 		ChavaManager.getPluginManager().callEvent(ConnectEvent.getInstance());
+	}
+
+	@Override
+	protected void onPrivateMessage(String sender, String login, String hostname, String message) {
+		ChavaManager.getPluginManager().callEvent(PrivateMessageEvent.getInstance(message, new ChavaUser(sender, login, hostname, null)));
 	}
 
 	@Override

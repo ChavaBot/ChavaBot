@@ -7,54 +7,62 @@ import java.util.List;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
+import com.alta189.chavabot.botevents.SendMessageEvent;
+import com.alta189.chavabot.events.userevents.NickChangeEvent;
+
 public class ChavaBot {
 	private SimplePircBot bot = new SimplePircBot(this);
 	private List<Channel> channels = new ArrayList<Channel>();
 	private String host;
 	private int port = 0;
-	
+
 	public void connect() throws NickAlreadyInUseException, IOException, IrcException {
 		if (host != null && port != 0 && bot.getNick() != null && bot.getLogin() != null) {
 			bot.connect(host, port);
 		}
 	}
-	
+
 	public void requestChavaUser(String nick) {
 		bot.sendWhois(nick);
 	}
-	
+
 	public void setVerbose(boolean verbose) {
 		bot.setVerbose(verbose);
 	}
-	
+
 	public String getNick() {
 		return bot.getNick();
 	}
-	
+
 	public void setNick(String nick) {
-		if (bot.isConnected()) {
-			bot.changeNick(nick);
-		} else {
-			bot.setName(nick);
+		NickChangeEvent event = NickChangeEvent.getInstance(bot.getNick(), nick);
+		ChavaManager.getPluginManager().callEvent(event);
+		if (!event.isCancelled()) {
+			if (bot.isConnected()) {
+				bot.changeNick(event.getNewNick());
+			} else {
+				bot.setName(event.getNewNick());
+			}
 		}
 	}
-	
+
 	public String getLogin() {
 		return bot.getLogin();
 	}
-	
+
 	public void setLogin(String login) {
-		if (!bot.isConnected()) bot.setLogin(login);
+		if (!bot.isConnected())
+			bot.setLogin(login);
 	}
-	
+
 	public Channel getChannel(String channel) {
 		for (Channel chan : channels) {
-			if (chan.equals(channel)) 
+			if (chan.equals(channel))
 				return chan;
 		}
 		return null;
 	}
-	
+
 	public void updateChannel(String channel) {
 		channels.remove(channel);
 		Channel chan = new Channel(channel);
@@ -62,7 +70,7 @@ public class ChavaBot {
 		chan.setMotd(bot.getMotd(channel));
 		channels.add(chan);
 	}
-	
+
 	public List<Channel> getChannels() {
 		return channels;
 	}
@@ -83,4 +91,18 @@ public class ChavaBot {
 		this.port = port;
 	}
 	
+	public void sendMessage(String target, String message) {
+		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
+		if (!event.isCancelled()) {
+			bot.sendMessage(event.getTarget(), event.getMessage());
+		}
+	}
+	
+	public void sendAction(String target, String message) {
+		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
+		if (!event.isCancelled()) {
+			bot.sendMessage(event.getTarget(), event.getMessage());
+		}
+	}
+
 }

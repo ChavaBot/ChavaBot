@@ -21,7 +21,7 @@ public class JoinEvent extends ChannelEvent<JoinEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "";
+		return "Join Event";
 	}
 
 }

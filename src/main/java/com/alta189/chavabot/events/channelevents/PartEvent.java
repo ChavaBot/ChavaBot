@@ -33,7 +33,7 @@ public class PartEvent extends ChannelEvent<PartEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "";
+		return "Part Event";
 	}
 
 }

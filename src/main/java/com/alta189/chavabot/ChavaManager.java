@@ -32,6 +32,10 @@ public class ChavaManager {
 		return instance;
 	}
 	
+	public ChavaBot getChavaBot() {
+		return bot;
+	}
+	
 	public void loadPlugins() {
 		pluginManager.registerInterface(JavaPluginLoader.class);
 

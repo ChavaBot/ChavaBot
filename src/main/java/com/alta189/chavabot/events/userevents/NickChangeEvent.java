@@ -29,7 +29,7 @@ public class NickChangeEvent extends UserEvent<NickChangeEvent> {
 	
 	@Override
 	protected String getEventName() {
-		return "Connect Event";
+		return "Nick Change Event";
 	}
 	
 }

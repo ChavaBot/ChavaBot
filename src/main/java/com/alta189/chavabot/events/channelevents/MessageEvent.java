@@ -27,7 +27,7 @@ public class MessageEvent extends ChannelEvent<MessageEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "";
+		return "Message Event";
 	}
 
 }
