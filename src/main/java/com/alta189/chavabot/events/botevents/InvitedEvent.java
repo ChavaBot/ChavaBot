@@ -11,6 +11,7 @@ public class InvitedEvent extends BotEvent<InvitedEvent> {
 	
 	public static InvitedEvent getInstance(String channel, ChavaUser sender) {
 		instance.channel = channel;
+		instance.user = sender;
 		return instance;
 	}
 
