@@ -1,4 +1,4 @@
-package com.alta189.chavabot.botevents;
+package com.alta189.chavabot.events.botevents;
 
 import com.alta189.chavabot.events.HandlerList;
 

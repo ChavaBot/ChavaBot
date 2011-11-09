@@ -7,8 +7,8 @@ import java.util.List;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
-import com.alta189.chavabot.botevents.SendMessageEvent;
-import com.alta189.chavabot.botevents.SendNoticeEvent;
+import com.alta189.chavabot.events.botevents.SendMessageEvent;
+import com.alta189.chavabot.events.botevents.SendNoticeEvent;
 import com.alta189.chavabot.events.userevents.NickChangeEvent;
 
 public class ChavaBot {

@@ -20,6 +20,7 @@ public class ChavaManager {
 	private SimplePluginManager pluginManager;
 	private String pluginFolder = "plugins";
 	private ChavaBot bot = null;
+	private final static String version = "ChavaBot b{BUILD.NUMBER}, author alta189";
 	
 	private ChavaManager() {
 	}
@@ -30,6 +31,10 @@ public class ChavaManager {
 			instance.pluginManager = new SimplePluginManager(instance);
 		}
 		return instance;
+	}
+	
+	public static String getVersion() {
+		return version;
 	}
 	
 	public ChavaBot getChavaBot() {

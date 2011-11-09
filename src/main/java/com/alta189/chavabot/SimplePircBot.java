@@ -1,18 +1,25 @@
 package com.alta189.chavabot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.jibble.pircbot.PircBot;
 
-import com.alta189.chavabot.botevents.PrivateMessageEvent;
+import com.alta189.chavabot.events.botevents.InvitedEvent;
+import com.alta189.chavabot.events.botevents.PrivateMessageEvent;
+import com.alta189.chavabot.events.channelevents.ChannelKickEvent;
+import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
 import com.alta189.chavabot.events.channelevents.JoinEvent;
 import com.alta189.chavabot.events.channelevents.MessageEvent;
 import com.alta189.chavabot.events.channelevents.PartEvent;
+import com.alta189.chavabot.events.channelevents.SetChannelBanEvent;
+import com.alta189.chavabot.events.channelevents.SetModeratedEvent;
 import com.alta189.chavabot.events.ircevents.ConnectEvent;
 import com.alta189.chavabot.events.ircevents.DisconnectEvent;
 import com.alta189.chavabot.events.userevents.ActionEvent;
 import com.alta189.chavabot.events.userevents.ChavaUserEvent;
+import com.alta189.chavabot.events.userevents.NickChangeEvent;
 import com.alta189.chavabot.events.userevents.NoticeEvent;
 import com.alta189.chavabot.events.userevents.QuitEvent;
 
@@ -95,6 +102,80 @@ public class SimplePircBot extends PircBot {
 	protected void onPart(String channel, String sender, String login, String hostname) {
 		parent.updateChannel(channel);
 		ChavaManager.getPluginManager().callEvent(PartEvent.getInstance(new ChavaUser(sender, login, hostname, null), parent.getChannel(channel)));
+	}
+
+	@Override
+	protected void onNickChange(String oldNick, String login, String hostname, String newNick) {
+		ArrayList<Channel> channels = (ArrayList<Channel>) parent.getChannels();
+		for (Channel chan : channels) {
+			if (chan.getUser(oldNick) != null) {
+				parent.updateChannel(chan.toString());
+			}
+		}
+		ChavaManager.getPluginManager().callEvent(NickChangeEvent.getInstance(oldNick, newNick));
+	}
+
+	@Override
+	protected void onKick(String channel, String kickerNick, String kickerLogin, String kickerHostname, String recipientNick, String reason) {
+		Channel chan = parent.getChannel(channel);
+		ChavaUser user = new ChavaUser(kickerNick,kickerLogin,kickerHostname,null);
+		if (chan != null) {		
+		} else {
+			parent.updateChannel(channel);
+			chan  = parent.getChannel(channel);
+		}
+		ChavaManager.getPluginManager().callEvent(ChannelKickEvent.getInstance(user, chan, recipientNick, reason));
+	}
+
+	@Override
+	protected void onVoice(String channel, String sourceNick, String sourceLogin, String sourceHostname, String recipient) {
+		Channel chan = parent.getChannel(channel);
+		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
+		if (chan != null) {		
+		} else {
+			parent.updateChannel(channel);
+			chan  = parent.getChannel(channel);
+		}
+		ChavaManager.getPluginManager().callEvent(ChannelVoiceEvent.getInstance(user, chan, recipient));
+	}
+
+	@Override
+	protected void onSetChannelBan(String channel, String sourceNick, String sourceLogin, String sourceHostname, String hostmask) {
+		Channel chan = parent.getChannel(channel);
+		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
+		if (chan != null) {		
+		} else {
+			parent.updateChannel(channel);
+			chan  = parent.getChannel(channel);
+		}
+		ChavaManager.getPluginManager().callEvent(SetChannelBanEvent.getInstance(user, chan, hostmask));
+	}
+
+	@Override
+	protected void onSetModerated(String channel, String sourceNick, String sourceLogin, String sourceHostname) {
+		Channel chan = parent.getChannel(channel);
+		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
+		if (chan != null) {		
+		} else {
+			parent.updateChannel(channel);
+			chan  = parent.getChannel(channel);
+		}
+		ChavaManager.getPluginManager().callEvent(SetModeratedEvent.getInstance(user, chan));
+	}
+
+	@Override
+	protected void onInvite(String targetNick, String sourceNick, String sourceLogin, String sourceHostname, String channel) {
+		ChavaManager.getPluginManager().callEvent(InvitedEvent.getInstance(channel, new ChavaUser(sourceNick, sourceLogin,sourceHostname, null)));
+	}
+
+	@Override
+	protected void onVersion(String sourceNick, String sourceLogin, String sourceHostname, String target) {
+		this.sendMessage(sourceNick, ChavaManager.getVersion());
+	}
+
+	@Override
+	protected void onServerPing(String response) {
+		super.onServerPing(response);
 	}
 
 	@Override

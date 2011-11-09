@@ -53,4 +53,19 @@ public class ChavaUser {
 	public boolean isValid() {
 		return (login != null || hostname != null);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof String) {
+			return ((String)obj).equalsIgnoreCase(this.toString());
+		} else if (obj instanceof ChavaUser){
+			return ((ChavaUser)obj).toString().equalsIgnoreCase(this.toString());
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return nick;
+	}
 }
