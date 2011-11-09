@@ -22,7 +22,7 @@ public class SendActionEvent extends BotEvent<SendActionEvent> {
 		this.target = target;
 	}
 
-	public String getMessage() {
+	public String getAction() {
 		return action;
 	}
 

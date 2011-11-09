@@ -22,7 +22,7 @@ public class SendNoticeEvent extends BotEvent<SendNoticeEvent> {
 		this.target = target;
 	}
 
-	public String getMessage() {
+	public String getNotice() {
 		return notice;
 	}
 
