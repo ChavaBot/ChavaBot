@@ -8,6 +8,7 @@ import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
 import com.alta189.chavabot.botevents.SendMessageEvent;
+import com.alta189.chavabot.botevents.SendNoticeEvent;
 import com.alta189.chavabot.events.userevents.NickChangeEvent;
 
 public class ChavaBot {
@@ -102,6 +103,13 @@ public class ChavaBot {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
 		if (!event.isCancelled()) {
 			bot.sendMessage(event.getTarget(), event.getMessage());
+		}
+	}
+	
+	public void sendNotice(String target, String notice) {
+		SendNoticeEvent event = SendNoticeEvent.getInstance(notice, target);
+		if (!event.isCancelled()) {
+			bot.sendNotice(event.getTarget(), event.getNotice());
 		}
 	}
 
