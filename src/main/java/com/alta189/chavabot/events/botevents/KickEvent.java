@@ -24,6 +24,10 @@ public class KickEvent extends BotEvent<KickEvent> {
 		return recipient;
 	}
 	
+	public String getReason() {
+		return reason;
+	}
+	
 	@Override
 	public HandlerList<KickEvent> getHandlers() {
 		return handlers;
