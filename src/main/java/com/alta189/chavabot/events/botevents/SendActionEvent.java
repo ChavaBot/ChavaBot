@@ -12,6 +12,7 @@ public class SendActionEvent extends BotEvent<SendActionEvent> implements Cancel
 	public static SendActionEvent getInstance(String action, String target) {
 		instance.action = action;
 		instance.target = target;
+		instance.setCancelled(false);
 		return instance;
 	}
 	

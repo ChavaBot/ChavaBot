@@ -17,6 +17,7 @@ public class KickEvent extends BotEvent<KickEvent> implements Cancellable {
 		instance.channel = channel;
 		instance.recipient = recipient;
 		instance.reason = reason;
+		instance.setCancelled(false);
 		return instance;
 	}
 

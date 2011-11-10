@@ -15,6 +15,7 @@ public class SendMessageEvent extends BotEvent<SendMessageEvent> implements Canc
 	public static SendMessageEvent getInstance(String message, String target) {
 		instance.message = message;
 		instance.target = target;
+		instance.setCancelled(false);
 		return instance;
 	}
 	

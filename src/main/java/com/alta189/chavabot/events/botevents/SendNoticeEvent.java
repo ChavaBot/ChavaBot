@@ -15,6 +15,7 @@ public class SendNoticeEvent extends BotEvent<SendNoticeEvent> implements Cancel
 	public static SendNoticeEvent getInstance(String notice, String target) {
 		instance.notice = notice;
 		instance.target = target;
+		instance.setCancelled(false);
 		return instance;
 	}
 
