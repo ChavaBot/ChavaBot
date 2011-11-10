@@ -12,9 +12,9 @@ import com.alta189.chavabot.events.botevents.ServerPingEvent;
 import com.alta189.chavabot.events.channelevents.ChannelKickEvent;
 import com.alta189.chavabot.events.channelevents.ChannelOpEvent;
 import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
-import com.alta189.chavabot.events.channelevents.JoinEvent;
+import com.alta189.chavabot.events.channelevents.ChannelJoinEvent;
 import com.alta189.chavabot.events.channelevents.MessageEvent;
-import com.alta189.chavabot.events.channelevents.PartEvent;
+import com.alta189.chavabot.events.channelevents.ChannelPartEvent;
 import com.alta189.chavabot.events.channelevents.SetChannelBanEvent;
 import com.alta189.chavabot.events.channelevents.SetModeratedEvent;
 import com.alta189.chavabot.events.ircevents.ConnectEvent;
@@ -58,7 +58,7 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onJoin(String channel, String sender, String login, String hostname) {
 		parent.updateChannel(channel);
-		ChavaManager.getPluginManager().callEvent(JoinEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
+		ChavaManager.getPluginManager().callEvent(ChannelJoinEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
 	public synchronized void sendWhois(String nick) {
@@ -115,7 +115,7 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onPart(String channel, String sender, String login, String hostname) {
 		parent.updateChannel(channel);
-		ChavaManager.getPluginManager().callEvent(PartEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
+		ChavaManager.getPluginManager().callEvent(ChannelPartEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
 	@Override

@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.channelevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class MessageEvent extends ChannelEvent<MessageEvent> {
 	private static final MessageEvent instance = new MessageEvent();
@@ -27,6 +30,10 @@ public class MessageEvent extends ChannelEvent<MessageEvent> {
 	
 	public String getMessage() {
 		return message;
+	}
+	
+	public static void register(Listener<MessageEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 
 	@Override

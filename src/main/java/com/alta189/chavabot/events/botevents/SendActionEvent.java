@@ -1,8 +1,9 @@
 package com.alta189.chavabot.events.botevents;
 
+import com.alta189.chavabot.events.Cancellable;
 import com.alta189.chavabot.events.HandlerList;
 
-public class SendActionEvent extends BotEvent<SendActionEvent> {
+public class SendActionEvent extends BotEvent<SendActionEvent> implements Cancellable {
 	private static final SendActionEvent instance = new SendActionEvent();
 	private static final HandlerList<SendActionEvent> handlers = new HandlerList<SendActionEvent>();
 	private String action;

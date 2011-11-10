@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.userevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ChavaUserEvent extends UserEvent<ChavaUserEvent> {
 	private static final ChavaUserEvent instance = new ChavaUserEvent();
@@ -14,6 +17,10 @@ public class ChavaUserEvent extends UserEvent<ChavaUserEvent> {
 	
 	public ChavaUser getChavaUser() {
 		return user;
+	}
+	
+	public static void register(Listener<ChavaUserEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

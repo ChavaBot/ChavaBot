@@ -124,5 +124,16 @@ public class ChavaBot {
 			bot.kick(event.getChannel(), event.getRecipient());
 		}
 	}
+	
+	public void joinChannel(String channel) {
+		
+	}
+	
+	public void partChannel(String channel) {
+		
+	}
+	public void partChannel(String channel) {
+		
+	}
 
 }

@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.userevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class QuitEvent extends UserEvent<QuitEvent> {
 	private static final QuitEvent instance = new QuitEvent();
@@ -20,6 +23,10 @@ public class QuitEvent extends UserEvent<QuitEvent> {
 	
 	public ChavaUser getUser() {
 		return user;
+	}
+	
+	public static void register(Listener<QuitEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 
 	@Override

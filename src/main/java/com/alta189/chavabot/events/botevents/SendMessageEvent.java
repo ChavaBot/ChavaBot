@@ -1,8 +1,12 @@
 package com.alta189.chavabot.events.botevents;
 
+import com.alta189.chavabot.events.Cancellable;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
-public class SendMessageEvent extends BotEvent<SendMessageEvent> {
+public class SendMessageEvent extends BotEvent<SendMessageEvent> implements Cancellable {
 	private static final SendMessageEvent instance = new SendMessageEvent();
 	private static final HandlerList<SendMessageEvent> handlers = new HandlerList<SendMessageEvent>();
 	private String message;
@@ -28,6 +32,10 @@ public class SendMessageEvent extends BotEvent<SendMessageEvent> {
 
 	public String getTarget() {
 		return target;
+	}
+	
+	public static void register(Listener<SendMessageEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

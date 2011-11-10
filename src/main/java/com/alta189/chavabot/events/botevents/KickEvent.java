@@ -1,8 +1,12 @@
 package com.alta189.chavabot.events.botevents;
 
+import com.alta189.chavabot.events.Cancellable;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
-public class KickEvent extends BotEvent<KickEvent> {
+public class KickEvent extends BotEvent<KickEvent> implements Cancellable {
 	private static final KickEvent instance = new KickEvent();
 	private static final HandlerList<KickEvent> handlers = new HandlerList<KickEvent>();
 	private String channel;
@@ -26,6 +30,10 @@ public class KickEvent extends BotEvent<KickEvent> {
 	
 	public String getReason() {
 		return reason;
+	}
+	
+	public static void register(Listener<KickEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

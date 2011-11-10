@@ -1,6 +1,9 @@
 package com.alta189.chavabot.events.ircevents;
 
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class DisconnectEvent extends IrcEvent<DisconnectEvent> {
 	private static final DisconnectEvent instance = new DisconnectEvent();
@@ -8,6 +11,10 @@ public class DisconnectEvent extends IrcEvent<DisconnectEvent> {
 	
 	public static DisconnectEvent getInstance() {
 		return instance;
+	}
+	
+	public static void register(Listener<DisconnectEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

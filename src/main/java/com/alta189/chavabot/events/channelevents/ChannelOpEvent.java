@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.channelevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ChannelOpEvent extends ChannelEvent<ChannelOpEvent> {
 	private static final ChannelOpEvent instance = new ChannelOpEvent();
@@ -29,6 +32,10 @@ public class ChannelOpEvent extends ChannelEvent<ChannelOpEvent> {
 	public String getRecipient() {
 		return recipient;
 	}
+	
+	public static void register(Listener<ChannelOpEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
+	}
 
 	@Override
 	public HandlerList<ChannelOpEvent> getHandlers() {
@@ -37,7 +44,7 @@ public class ChannelOpEvent extends ChannelEvent<ChannelOpEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "Channel Voice Event";
+		return "Channel Op Event";
 	}
 
 }

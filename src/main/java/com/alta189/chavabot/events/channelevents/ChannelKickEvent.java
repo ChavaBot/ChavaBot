@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.channelevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ChannelKickEvent extends ChannelEvent<ChannelKickEvent> {
 	private static final ChannelKickEvent instance = new ChannelKickEvent();
@@ -32,6 +35,10 @@ public class ChannelKickEvent extends ChannelEvent<ChannelKickEvent> {
 
 	public String getRecipient() {
 		return recipient;
+	}
+	
+	public static void register(Listener<ChannelKickEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 
 	@Override

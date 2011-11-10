@@ -1,6 +1,9 @@
 package com.alta189.chavabot.events.ircevents;
 
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ConnectEvent extends IrcEvent<ConnectEvent> {
 	private static final ConnectEvent instance = new ConnectEvent();
@@ -8,6 +11,10 @@ public class ConnectEvent extends IrcEvent<ConnectEvent> {
 	
 	public static ConnectEvent getInstance() {
 		return instance;
+	}
+	
+	public static void register(Listener<ConnectEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

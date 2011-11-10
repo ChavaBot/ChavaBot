@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.botevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class PrivateMessageEvent extends BotEvent<PrivateMessageEvent> {
 	private static final PrivateMessageEvent instance = new PrivateMessageEvent();
@@ -22,6 +25,10 @@ public class PrivateMessageEvent extends BotEvent<PrivateMessageEvent> {
 		return user;
 	}
 	
+	public static void register(Listener<PrivateMessageEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
+	}
+	
 	@Override
 	public HandlerList<PrivateMessageEvent> getHandlers() {
 		return handlers;
@@ -31,9 +38,5 @@ public class PrivateMessageEvent extends BotEvent<PrivateMessageEvent> {
 	protected String getEventName() {
 		return "Private Message Event";
 	}
-	
-	public void setCancelled(boolean cancelled) {
-        super.setCancelled(cancelled);
-    }
 	
 }

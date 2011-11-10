@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.userevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class NoticeEvent extends UserEvent<NoticeEvent> {
 	private static final NoticeEvent instance = new NoticeEvent();
@@ -26,6 +29,10 @@ public class NoticeEvent extends UserEvent<NoticeEvent> {
 
 	public String getTarget() {
 		return target;
+	}
+	
+	public static void register(Listener<NoticeEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 
 	@Override

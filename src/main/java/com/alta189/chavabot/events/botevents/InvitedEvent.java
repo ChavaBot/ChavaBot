@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.botevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class InvitedEvent extends BotEvent<InvitedEvent> {
 	private static final InvitedEvent instance = new InvitedEvent();
@@ -21,6 +24,10 @@ public class InvitedEvent extends BotEvent<InvitedEvent> {
 
 	public ChavaUser getSender() {
 		return user;
+	}
+	
+	public static void register(Listener<InvitedEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

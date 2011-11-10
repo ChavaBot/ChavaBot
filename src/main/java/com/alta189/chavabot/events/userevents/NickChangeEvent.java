@@ -1,6 +1,9 @@
 package com.alta189.chavabot.events.userevents;
 
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class NickChangeEvent extends UserEvent<NickChangeEvent> {
 	private static final NickChangeEvent instance = new NickChangeEvent();
@@ -20,6 +23,10 @@ public class NickChangeEvent extends UserEvent<NickChangeEvent> {
 
 	public String getNewNick() {
 		return newNick;
+	}
+	
+	public static void register(Listener<NickChangeEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override

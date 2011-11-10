@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.channelevents;
 
 import com.alta189.chavabot.ChavaUser;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class SetChannelBanEvent extends ChannelEvent<SetChannelBanEvent> {
 	private static final SetChannelBanEvent instance = new SetChannelBanEvent();
@@ -28,6 +31,10 @@ public class SetChannelBanEvent extends ChannelEvent<SetChannelBanEvent> {
 	public String getHostmask() {
 		return hostmask;
 	}
+	
+	public static void register(Listener<SetChannelBanEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
+	}
 
 	@Override
 	public HandlerList<SetChannelBanEvent> getHandlers() {
@@ -36,7 +43,7 @@ public class SetChannelBanEvent extends ChannelEvent<SetChannelBanEvent> {
 
 	@Override
 	protected String getEventName() {
-		return "Set Moderated Event";
+		return "Set Channel Ban Event";
 	}
 
 }

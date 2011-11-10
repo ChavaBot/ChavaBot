@@ -2,6 +2,9 @@ package com.alta189.chavabot.events.botevents;
 
 import com.alta189.chavabot.events.Cancellable;
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ChangeNickEvent extends BotEvent<ChangeNickEvent> implements Cancellable {
 	private static final ChangeNickEvent instance = new ChangeNickEvent();
@@ -30,6 +33,10 @@ public class ChangeNickEvent extends BotEvent<ChangeNickEvent> implements Cancel
 
 	public void setNewNick(String newNick) {
 		this.newNick = newNick;
+	}
+	
+	public static void register(Listener<ChangeNickEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 
 	@Override

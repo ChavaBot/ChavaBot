@@ -1,6 +1,9 @@
 package com.alta189.chavabot.events.botevents;
 
 import com.alta189.chavabot.events.HandlerList;
+import com.alta189.chavabot.events.Listener;
+import com.alta189.chavabot.events.Order;
+import com.alta189.chavabot.plugins.Plugin;
 
 public class ServerPingEvent extends BotEvent<ServerPingEvent> {
 	private static final ServerPingEvent instance = new ServerPingEvent();
@@ -14,6 +17,10 @@ public class ServerPingEvent extends BotEvent<ServerPingEvent> {
 
 	public String getTarget() {
 		return response;
+	}
+	
+	public static void register(Listener<ServerPingEvent> listener, Order order, Plugin plugin) {
+		handlers.register(listener, order, plugin);
 	}
 	
 	@Override
