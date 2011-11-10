@@ -96,6 +96,11 @@ public class SettingsHandler {
 		if (this.cached = false) this.cache = null;
 	}
 	
+	public HashMap<String, String> getAsMap() {
+		if (this.cached) return cache;
+		return this.loadHashMap();
+	}
+	
 	/**
 	 * Private method that takes the resource and writes it to the File out.
 	 * @param String name
