@@ -7,7 +7,9 @@ import java.util.List;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
+import com.alta189.chavabot.events.botevents.JoinEvent;
 import com.alta189.chavabot.events.botevents.KickEvent;
+import com.alta189.chavabot.events.botevents.PartEvent;
 import com.alta189.chavabot.events.botevents.SendMessageEvent;
 import com.alta189.chavabot.events.botevents.SendNoticeEvent;
 import com.alta189.chavabot.events.userevents.NickChangeEvent;
@@ -126,14 +128,20 @@ public class ChavaBot {
 	}
 	
 	public void joinChannel(String channel) {
-		
+		JoinEvent event = JoinEvent.getInstance(channel);
+		if (!event.isCancelled()) {
+			bot.partChannel(event.getChannel());
+		}
 	}
 	
 	public void partChannel(String channel) {
-		
+		partChannel(channel, null);
 	}
-	public void partChannel(String channel) {
-		
+	public void partChannel(String channel, String reason) {
+		PartEvent event = PartEvent.getInstance(channel, reason);
+		if (!event.isCancelled()) {
+			bot.partChannel(event.getChannel(), event.getReason());
+		}
 	}
 
 }
