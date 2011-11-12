@@ -26,11 +26,11 @@ public class ChavaBot {
 			bot.connect(host, port);
 		}
 	}
-	
+
 	protected List<String> getAjChannels() {
 		return ajChannels;
 	}
-	
+
 	protected void setAjChannels(List<String> ajChannels) {
 		this.ajChannels = ajChannels;
 	}
@@ -103,49 +103,50 @@ public class ChavaBot {
 	public void setPort(int port) {
 		this.port = port;
 	}
-	
+
 	public void sendMessage(String target, String message) {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
 		if (!event.isCancelled()) {
 			bot.sendMessage(event.getTarget(), event.getMessage());
 		}
 	}
-	
+
 	public void sendAction(String target, String message) {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
 		if (!event.isCancelled()) {
 			bot.sendMessage(event.getTarget(), event.getMessage());
 		}
 	}
-	
+
 	public void sendNotice(String target, String notice) {
 		SendNoticeEvent event = SendNoticeEvent.getInstance(notice, target);
 		if (!event.isCancelled()) {
 			bot.sendNotice(event.getTarget(), event.getNotice());
 		}
 	}
-	
+
 	public void kick(String channel, String nick) {
-		kick(channel,nick,null);
+		kick(channel, nick, null);
 	}
-	
+
 	public void kick(String channel, String nick, String reason) {
 		KickEvent event = KickEvent.getInstance(channel, nick, reason);
 		if (!event.isCancelled()) {
 			bot.kick(event.getChannel(), event.getRecipient());
 		}
 	}
-	
+
 	public void joinChannel(String channel) {
 		JoinEvent event = JoinEvent.getInstance(channel);
 		if (!event.isCancelled()) {
 			bot.partChannel(event.getChannel());
 		}
 	}
-	
+
 	public void partChannel(String channel) {
 		partChannel(channel, null);
 	}
+
 	public void partChannel(String channel, String reason) {
 		PartEvent event = PartEvent.getInstance(channel, reason);
 		if (!event.isCancelled()) {
