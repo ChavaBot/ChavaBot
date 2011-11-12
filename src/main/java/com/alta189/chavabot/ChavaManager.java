@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.IOUtils;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
@@ -19,8 +20,8 @@ public class ChavaManager {
 	private static ChavaManager instance;
 	private SimplePluginManager pluginManager;
 	private String pluginFolder = "plugins";
+	private String version = null;
 	private ChavaBot bot = null;
-	private final static String version = "ChavaBot b{BUILD.NUMBER}, author alta189";
 	
 	private ChavaManager() {
 	}
@@ -34,7 +35,16 @@ public class ChavaManager {
 	}
 	
 	public static String getVersion() {
-		return version;
+		if (instance.version == null) {
+			String build = "0";
+			try {
+				build = IOUtils.toString(ChavaManager.class.getResource("version").openStream(), "UTF-8");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			instance.version = "ChavaBot b" + build + ", author alta189";
+		}
+		return instance.version;
 	}
 	
 	public ChavaBot getChavaBot() {
