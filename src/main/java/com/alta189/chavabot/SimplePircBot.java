@@ -48,6 +48,9 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onConnect() {
 		ChavaManager.getPluginManager().callEvent(ConnectEvent.getInstance());
+		for (String channel : parent.getAjChannels()) {
+			parent.joinChannel(channel);
+		}
 	}
 
 	@Override

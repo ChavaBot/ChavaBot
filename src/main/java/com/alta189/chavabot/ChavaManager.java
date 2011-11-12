@@ -105,6 +105,7 @@ public class ChavaManager {
 			bot.setPort(options.getPort());
 			bot.setNick(options.getNick());
 			bot.setVerbose(options.isVerbose());
+			bot.setAjChannels(options.getChannels());
 			loadPlugins();
 			enablePlugins();
 			bot.connect();

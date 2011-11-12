@@ -19,11 +19,20 @@ public class ChavaBot {
 	private List<Channel> channels = new ArrayList<Channel>();
 	private String host;
 	private int port = 0;
+	private List<String> ajChannels = new ArrayList<String>();
 
 	public void connect() throws NickAlreadyInUseException, IOException, IrcException {
 		if (host != null && port != 0 && bot.getNick() != null && bot.getLogin() != null) {
 			bot.connect(host, port);
 		}
+	}
+	
+	protected List<String> getAjChannels() {
+		return ajChannels;
+	}
+	
+	protected void setAjChannels(List<String> ajChannels) {
+		this.ajChannels = ajChannels;
 	}
 
 	public void requestChavaUser(String nick) {
