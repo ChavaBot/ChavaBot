@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.alta189</groupId>
-    <artifactId>chavabot</artifactId>
-    <version>SNAPSHOT</version>
-	
+	<groupId>com.alta189</groupId>
+	<artifactId>chavabot</artifactId>
+	<version>SNAPSHOT</version>
+
 	<!-- Dependencies -->
 	<dependencies>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.9</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-  			<groupId>com.beust</groupId>
-  			<artifactId>jcommander</artifactId>
-  			<version>1.17</version>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.9</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.beust</groupId>
+			<artifactId>jcommander</artifactId>
+			<version>1.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
 		</dependency>
 	</dependencies>
 	<build>
-	<!-- Plugins -->
+		<!-- Plugins -->
 		<plugins>
 			<!-- Compile plugin -->
 			<plugin>
@@ -63,7 +67,9 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>pircbot:pircbot</include>
+									<include>org.yaml:snakeyaml</include>
+									<include>com.beust:jcommander</include>
+									<include>org.apache.commons:commons-io</include>
 								</includes>
 							</artifactSet>
 						</configuration>
@@ -72,5 +78,5 @@
 			</plugin>
 		</plugins>
 	</build>
-    
+
 </project>
