@@ -63,7 +63,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>${project.groupId}.${project.artifactId}.Core</mainClass>
+							<mainClass>${project.groupId}.${project.artifactId}.Main</mainClass>
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
 						<manifestEntries>
