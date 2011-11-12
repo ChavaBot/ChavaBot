@@ -97,11 +97,29 @@ public class SettingsHandler {
 		if (this.cached = false)
 			this.cache = null;
 	}
-
+	
+	/**
+	 * Returns the Settings File as a HashMap with a String key and a String value
+	 * @return HashMap<String, String> map
+	 */
 	public HashMap<String, String> getAsMap() {
 		if (this.cached)
 			return cache;
 		return this.loadHashMap();
+	}
+	
+	/**
+	 * Clears the cache and reset the file.
+	 */
+	public void reset() {
+		this.cache.clear();
+		this.out.delete();
+		try {
+			this.out.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.load();
 	}
 
 	/**
