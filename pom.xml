@@ -28,6 +28,25 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<!-- Resources -->
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>com/alta189/chavabot</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>version</include>
+				</includes>
+			</resource>
+		</resources>
 		<!-- Plugins -->
 		<plugins>
 			<!-- Compile plugin -->
