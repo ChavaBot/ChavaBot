@@ -153,5 +153,11 @@ public class ChavaBot {
 			bot.partChannel(event.getChannel(), event.getReason());
 		}
 	}
+	
+	public void disconnect() {
+		bot.disconnect();
+		ChavaManager.getPluginManager().disablePlugins();
+		System.exit(1);
+	}
 
 }
