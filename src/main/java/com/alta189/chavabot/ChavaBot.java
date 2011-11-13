@@ -154,7 +154,7 @@ public class ChavaBot {
 		}
 	}
 	
-	public void discconect() {
+	public void disconnect() {
 		bot.quitServer();
 		ChavaManager.getPluginManager().disablePlugins();
 		System.exit(1);
