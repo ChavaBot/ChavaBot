@@ -14,6 +14,7 @@ public class PrivateMessageEvent extends BotEvent<PrivateMessageEvent> {
 	
 	public static PrivateMessageEvent getInstance(String message, ChavaUser sender) {
 		instance.message = message;
+		instance.user = sender;
 		return instance;
 	}
 
