@@ -139,7 +139,7 @@ public class ChavaBot {
 	public void joinChannel(String channel) {
 		JoinEvent event = JoinEvent.getInstance(channel);
 		if (!event.isCancelled()) {
-			bot.partChannel(event.getChannel());
+			bot.joinChannel(event.getChannel());
 		}
 	}
 
