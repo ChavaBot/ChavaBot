@@ -154,8 +154,14 @@ public class ChavaBot {
 		}
 	}
 	
-	public void disconnect() {
-		bot.disconnect();
+	public void discconect() {
+		bot.quitServer();
+		ChavaManager.getPluginManager().disablePlugins();
+		System.exit(1);
+	}
+	
+	public void disconnect(String reason) {
+		bot.quitServer(reason);
 		ChavaManager.getPluginManager().disablePlugins();
 		System.exit(1);
 	}
