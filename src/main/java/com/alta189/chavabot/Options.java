@@ -35,7 +35,7 @@ public class Options {
 	public List<String> getChannels() {
 		List<String> result = new ArrayList<String>();
 		for (String chan : channels.split(",")) {
-			result.add(chan);
+			result.add("#" + chan);
 		}
 		return result;
 	}
