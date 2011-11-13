@@ -31,14 +31,6 @@
 		<!-- Resources -->
 		<resources>
 			<resource>
-				<targetPath>.</targetPath>
-				<filtering>false</filtering>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>plugin.yml</include>
-				</includes>
-			</resource>
-			<resource>
 				<targetPath>com/alta189/chavabot</targetPath>
 				<filtering>true</filtering>
 				<directory>${basedir}/src/main/resources</directory>
@@ -66,9 +58,6 @@
 							<mainClass>${project.groupId}.${project.artifactId}.Main</mainClass>
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
-						<manifestEntries>
-							<Url>${project.url}</Url>
-						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>

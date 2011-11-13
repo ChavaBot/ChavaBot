@@ -178,8 +178,8 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onServerPing(String response) {
+		super.onServerPing(response);
 		ChavaManager.getPluginManager().callEvent(ServerPingEvent.getInstance(response));
-		this.sendRawLine("PONG" + response);
 	}
 
 	@Override
