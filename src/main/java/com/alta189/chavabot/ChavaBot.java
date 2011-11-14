@@ -180,5 +180,15 @@ public class ChavaBot {
 		ChavaManager.getPluginManager().disablePlugins();
 		System.exit(1);
 	}
+	
+	public void reconnect() throws NickAlreadyInUseException, IOException, IrcException {
+		bot.quitServer();
+		bot.reconnect();
+	}
+	
+	public void reconnect(String reason) throws NickAlreadyInUseException, IOException, IrcException {
+		bot.quitServer();
+		bot.reconnect();		
+	}
 
 }
