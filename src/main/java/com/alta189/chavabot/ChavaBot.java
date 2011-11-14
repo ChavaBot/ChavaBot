@@ -12,6 +12,7 @@ import com.alta189.chavabot.events.botevents.KickEvent;
 import com.alta189.chavabot.events.botevents.PartEvent;
 import com.alta189.chavabot.events.botevents.SendMessageEvent;
 import com.alta189.chavabot.events.botevents.SendNoticeEvent;
+import com.alta189.chavabot.events.botevents.SendRawLineEvent;
 import com.alta189.chavabot.events.userevents.NickChangeEvent;
 
 public class ChavaBot {
@@ -102,6 +103,20 @@ public class ChavaBot {
 
 	public void setPort(int port) {
 		this.port = port;
+	}
+	
+	public void sendRawLineViaQueue(String raw) {
+		SendRawLineEvent event = SendRawLineEvent.getInstance(raw);
+		if (!event.isCancelled()) {
+			bot.sendRawLineViaQueue(raw);
+		}
+	}
+	
+	public void sendRawLine(String raw) {
+		SendRawLineEvent event = SendRawLineEvent.getInstance(raw);
+		if (!event.isCancelled()) {
+			bot.sendRawLine(raw);
+		}
 	}
 
 	public void sendMessage(String target, String message) {
