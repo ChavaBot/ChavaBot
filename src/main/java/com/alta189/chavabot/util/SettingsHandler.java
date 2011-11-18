@@ -112,7 +112,7 @@ public class SettingsHandler {
 	 * Clears the cache and reset the file.
 	 */
 	public void reset() {
-		this.cache.clear();
+		if (cached != null) this.cache.clear();
 		this.out.delete();
 		try {
 			this.out.createNewFile();
@@ -127,7 +127,7 @@ public class SettingsHandler {
 	 * @param in InputStream of the default file
 	 */
 	public void reset(InputStream in) {
-		this.cache.clear();
+		if (cached != null) this.cache.clear();
 		this.out.delete();
 		this.input = in;
 		try {
