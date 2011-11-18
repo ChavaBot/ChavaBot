@@ -128,7 +128,7 @@ public class SettingsHandler {
 	 */
 	public void reset(InputStream in) {
 		if (in == null) System.out.println("wut");
-		if (cached != null) this.cache.clear();
+		if (cache != null) this.cache.clear();
 		this.out.delete();
 		this.input = in;
 		try {
