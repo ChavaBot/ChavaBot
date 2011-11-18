@@ -121,6 +121,22 @@ public class SettingsHandler {
 		}
 		this.load();
 	}
+	
+	/**
+	 * Clears the cache and reset the file.
+	 * @param in InputStream of the default file
+	 */
+	public void reset(InputStream in) {
+		this.cache.clear();
+		this.out.delete();
+		this.input = in;
+		try {
+			this.out.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.load();
+	}
 
 	/**
 	 * Private method that takes the resource and writes it to the File out.
