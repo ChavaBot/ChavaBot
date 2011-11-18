@@ -177,12 +177,6 @@ public class SimplePircBot extends PircBot {
 	}
 
 	@Override
-	protected void onServerPing(String response) {
-		super.onServerPing(response);
-		ChavaManager.getPluginManager().callEvent(ServerPingEvent.getInstance(response));
-	}
-
-	@Override
 	protected void onServerResponse(int code, String response) {
 		switch (code) {
 			case RPL_WHOISUSER:
