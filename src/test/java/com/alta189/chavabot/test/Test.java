@@ -9,9 +9,7 @@ import com.alta189.chavabot.Main;
 
 public class Test {
 	public static void main(String[] args) throws NickAlreadyInUseException, IOException, IrcException {
-		String newArgs = "-v";
-		
+		String newArgs = "-v -h irc.esper.net -c spouty,chava";		
 		Main.main(newArgs.split(" "));
-
 	}
 }
