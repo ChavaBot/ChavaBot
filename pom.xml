@@ -10,6 +10,13 @@
 	<!-- Dependencies -->
 	<dependencies>
 		<dependency>
+			<groupId>pircbot</groupId>
+			<artifactId>pircbot</artifactId>
+			<version>1.5.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
 			<version>1.9</version>
@@ -75,6 +82,7 @@
 						<configuration>
 							<artifactSet>
 								<includes>
+									<include>pircbot:pircbot</include>
 									<include>org.yaml:snakeyaml</include>
 									<include>com.beust:jcommander</include>
 									<include>org.apache.commons:commons-io</include>

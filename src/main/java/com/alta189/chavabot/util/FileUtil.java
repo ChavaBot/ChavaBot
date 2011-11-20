@@ -39,6 +39,7 @@ public class FileUtil {
                 pos += in.transferTo(pos, 10 * 1024 * 1024, out);
             }
         } catch (IOException ioe) {
+        	ioe.printStackTrace();
             return false;
         } finally {
             try {

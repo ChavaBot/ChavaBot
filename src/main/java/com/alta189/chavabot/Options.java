@@ -14,7 +14,7 @@ public class Options {
 	@Parameter(names = { "-verbose" , "-v" }, description = "Level of verbosity")
 	private boolean verbose = false;
 	 
-	@Parameter(names = {"-host" , "-h"}, description = "IRC Host")
+	@Parameter(names = {"-host" , "-h", "-s" , "-server"}, description = "IRC Host")
 	private String host = "irc.ytalk.us";
 	
 	@Parameter(names = { "-port" , "-p" }, description = "IRC Port")

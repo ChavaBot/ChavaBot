@@ -55,7 +55,7 @@ public class ChavaBot {
 			if (bot.isConnected()) {
 				bot.changeNick(event.getNewNick());
 			} else {
-				bot.setName(event.getNewNick());
+				bot.publicSetName(event.getNewNick());
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class ChavaBot {
 
 	public void setLogin(String login) {
 		if (!bot.isConnected())
-			bot.setLogin(login);
+			bot.publicSetLogin(login);
 	}
 
 	public Channel getChannel(String channel) {

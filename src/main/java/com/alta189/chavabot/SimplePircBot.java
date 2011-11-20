@@ -8,13 +8,12 @@ import org.jibble.pircbot.PircBot;
 
 import com.alta189.chavabot.events.botevents.InvitedEvent;
 import com.alta189.chavabot.events.botevents.PrivateMessageEvent;
-import com.alta189.chavabot.events.botevents.ServerPingEvent;
+import com.alta189.chavabot.events.channelevents.ChannelJoinEvent;
 import com.alta189.chavabot.events.channelevents.ChannelKickEvent;
 import com.alta189.chavabot.events.channelevents.ChannelOpEvent;
-import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
-import com.alta189.chavabot.events.channelevents.ChannelJoinEvent;
-import com.alta189.chavabot.events.channelevents.MessageEvent;
 import com.alta189.chavabot.events.channelevents.ChannelPartEvent;
+import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
+import com.alta189.chavabot.events.channelevents.MessageEvent;
 import com.alta189.chavabot.events.channelevents.SetChannelBanEvent;
 import com.alta189.chavabot.events.channelevents.SetModeratedEvent;
 import com.alta189.chavabot.events.ircevents.ConnectEvent;
@@ -44,6 +43,14 @@ public class SimplePircBot extends PircBot {
 	protected SimplePircBot(ChavaBot parent) {
 		this.parent = parent;
 	}
+	
+	public void publicSetName(String name) {
+		setName(name);
+	}
+	
+	public void publicSetLogin(String login) {
+		setLogin(login);
+	}
 
 	@Override
 	protected void onConnect() {
@@ -69,6 +76,7 @@ public class SimplePircBot extends PircBot {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		waitWhois = true;
