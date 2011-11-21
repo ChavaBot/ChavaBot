@@ -129,7 +129,7 @@ public class ChavaBot {
 	public void sendAction(String target, String message) {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
 		if (!event.isCancelled()) {
-			bot.sendMessage(event.getTarget(), event.getMessage());
+			bot.sendAction(event.getTarget(), event.getMessage());
 		}
 	}
 
