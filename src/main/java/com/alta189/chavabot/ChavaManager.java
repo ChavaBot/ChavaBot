@@ -106,6 +106,7 @@ public class ChavaManager {
 			bot.setNick(options.getNick());
 			bot.setVerbose(options.isVerbose());
 			bot.setAjChannels(options.getChannels());
+			bot.setPass(options.getPass());
 			loadPlugins();
 			enablePlugins();
 			bot.connect();

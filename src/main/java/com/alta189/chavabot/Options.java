@@ -26,7 +26,7 @@ public class Options {
 	@Parameter(names = { "-login" , "-l" }, description = "IRC Login")
 	private String login = "ChavaBot";
 	
-	@Parameter(names = { "-pass" , "-ps"}, description = "IRC NickServ Password")
+	@Parameter(names = { "-pass" , "-ps"}, description = "IRC Server pass")
 	private String pass = null;
 	
 	@Parameter(names = { "-channels" , "-c" }, description = "IRC Channels to connect to separated by a comma")

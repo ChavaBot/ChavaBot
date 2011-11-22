@@ -21,10 +21,15 @@ public class ChavaBot {
 	private String host;
 	private int port = 0;
 	private List<String> ajChannels = new ArrayList<String>();
+	private String pass;
 
 	public void connect() throws NickAlreadyInUseException, IOException, IrcException {
 		if (host != null && port != 0 && bot.getNick() != null && bot.getLogin() != null) {
-			bot.connect(host, port);
+			if (pass != null) {
+				bot.connect(host, port, pass);
+			} else {
+				bot.connect(host, port);	
+			}
 		}
 	}
 
@@ -186,6 +191,20 @@ public class ChavaBot {
 	public void reconnect(String reason) throws NickAlreadyInUseException, IOException, IrcException {
 		bot.quitServer();
 		bot.reconnect();		
+	}
+
+	/**
+	 * @return the pass
+	 */
+	public String getPass() {
+		return pass;
+	}
+
+	/**
+	 * @param pass the pass to set
+	 */
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 }
