@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jibble.pircbot.PircBot;
+import org.jibble.pircbot.User;
 
 import com.alta189.chavabot.events.botevents.InvitedEvent;
 import com.alta189.chavabot.events.botevents.PrivateMessageEvent;
@@ -16,6 +17,7 @@ import com.alta189.chavabot.events.channelevents.ChannelVoiceEvent;
 import com.alta189.chavabot.events.channelevents.MessageEvent;
 import com.alta189.chavabot.events.channelevents.SetChannelBanEvent;
 import com.alta189.chavabot.events.channelevents.SetModeratedEvent;
+import com.alta189.chavabot.events.channelevents.UserListEvent;
 import com.alta189.chavabot.events.ircevents.ConnectEvent;
 import com.alta189.chavabot.events.ircevents.DisconnectEvent;
 import com.alta189.chavabot.events.userevents.ActionEvent;
@@ -43,7 +45,7 @@ public class SimplePircBot extends PircBot {
 	protected SimplePircBot(ChavaBot parent) {
 		this.parent = parent;
 	}
-	
+
 	public void publicSetName(String name) {
 		setName(name);
 	}
@@ -182,6 +184,11 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onVersion(String sourceNick, String sourceLogin, String sourceHostname, String target) {
 		this.sendMessage(sourceNick, ChavaManager.getVersion());
+	}
+	
+	@Override
+	protected void onUserList(String channel, User[] users) {
+		ChavaManager.getPluginManager().callEvent(UserListEvent.getInstance(users, channel));
 	}
 
 	@Override
