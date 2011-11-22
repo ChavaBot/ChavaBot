@@ -113,10 +113,7 @@ public class ChavaBot {
 	}
 	
 	public void sendRawLine(String raw) {
-		SendRawLineEvent event = SendRawLineEvent.getInstance(raw);
-		if (!event.isCancelled()) {
 			bot.sendRawLine(raw);
-		}
 	}
 
 	public void sendMessage(String target, String message) {
