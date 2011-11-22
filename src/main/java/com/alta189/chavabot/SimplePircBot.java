@@ -89,6 +89,8 @@ public class SimplePircBot extends PircBot {
 	@Override
 	protected void onDisconnect() {
 		ChavaManager.getPluginManager().callEvent(DisconnectEvent.getInstance());
+		ChavaManager.getPluginManager().disablePlugins();
+		System.exit(1);
 	}
 
 	@Override
