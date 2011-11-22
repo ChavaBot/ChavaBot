@@ -65,6 +65,7 @@ public class Options {
 	}
 
 	public String getPass() {
+		System.out.println(pass);
 		return pass;
 	}
 }
