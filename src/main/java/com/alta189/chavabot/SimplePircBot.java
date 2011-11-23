@@ -1,6 +1,5 @@
 package com.alta189.chavabot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -103,13 +102,13 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onOp(String channel, String sourceNick, String sourceLogin, String sourceHostname, String recipient) {
-		Channel chan = parent.getChannel(channel);
+//		Channel chan = parent.getChannel(channel);
 		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
-		if (chan != null) {		
+		/*if (chan != null) {		
 		} else {
 			parent.updateChannel(channel);
 			chan  = parent.getChannel(channel);
-		}
+		}*/
 		ChavaManager.getPluginManager().callEvent(ChannelOpEvent.getInstance(user, channel, recipient));
 	}
 
@@ -136,36 +135,36 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onNickChange(String oldNick, String login, String hostname, String newNick) {
-		ArrayList<Channel> channels = (ArrayList<Channel>) parent.getChannels();
+		/*ArrayList<Channel> channels = (ArrayList<Channel>) parent.getChannels();
 		for (Channel chan : channels) {
 			if (chan.getUser(oldNick) != null) {
 				parent.updateChannel(chan.toString());
 			}
-		}
+		}*/
 		ChavaManager.getPluginManager().callEvent(NickChangeEvent.getInstance(oldNick, newNick));
 	}
 
 	@Override
 	protected void onKick(String channel, String kickerNick, String kickerLogin, String kickerHostname, String recipientNick, String reason) {
-		Channel chan = parent.getChannel(channel);
+		//Channel chan = parent.getChannel(channel);
 		ChavaUser user = new ChavaUser(kickerNick,kickerLogin,kickerHostname,null);
-		if (chan != null) {		
+		/*if (chan != null) {		
 		} else {
 			parent.updateChannel(channel);
 			chan  = parent.getChannel(channel);
-		}
+		}*/
 		ChavaManager.getPluginManager().callEvent(ChannelKickEvent.getInstance(user, channel, recipientNick, reason));
 	}
 
 	@Override
 	protected void onVoice(String channel, String sourceNick, String sourceLogin, String sourceHostname, String recipient) {
-		Channel chan = parent.getChannel(channel);
+		//Channel chan = parent.getChannel(channel);
 		ChavaUser user = new ChavaUser(sourceNick,sourceLogin,sourceHostname,null);
-		if (chan != null) {		
+		/*if (chan != null) {		
 		} else {
 			parent.updateChannel(channel);
 			chan  = parent.getChannel(channel);
-		}
+		}*/
 		ChavaManager.getPluginManager().callEvent(ChannelVoiceEvent.getInstance(user, channel, recipient));
 	}
 

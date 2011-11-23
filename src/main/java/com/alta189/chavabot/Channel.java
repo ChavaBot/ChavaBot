@@ -8,17 +8,26 @@ import org.jibble.pircbot.User;
 
 public class Channel {
 	private Map<String, User> users = new HashMap<String, User>();
-	private String motd;
+	private String topic;
 	private final String channel;
 	
 	public Channel(String channel) {
 		this.channel = channel;
 	}
 	
+	/**
+	 * Returns an ArrayList of Users in the channel
+	 * @return users
+	 */
 	public ArrayList<User> getUsers() {
 		return new ArrayList<User>(users.values());
 	}
 	
+	/**
+	 *  Gets the User object of that nick
+	 * @param nick 
+	 * @return
+	 */
 	public User getUser(String nick) {
 		return users.get(nick);
 	}
@@ -47,15 +56,23 @@ public class Channel {
 	public String toString() {
 		return channel;
 	}
-
-	public String getMotd() {
-		return motd;
+	
+	/**
+	 * Returns the topic of that channel
+	 * @return topic 
+	 */
+	public String getTopic() {
+		return topic;
 	}
 
-	protected void setMotd(String motd) {
-		this.motd = motd;
+	protected void setTopic(String topic) {
+		this.topic = topic;
 	}
 	
+	/**
+	 * Returns the channel name
+	 * @return name
+	 */
 	public String getName() {
 		return channel;
 	}
