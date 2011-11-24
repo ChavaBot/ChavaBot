@@ -69,7 +69,7 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onJoin(String channel, String sender, String login, String hostname) {
-		parent.updateChannel(channel);
+		//parent.updateChannel(channel);
 		ChavaManager.getPluginManager().callEvent(ChannelJoinEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
@@ -97,7 +97,7 @@ public class SimplePircBot extends PircBot {
 	protected void onTopic(String channel, String topic, String setBy, long date, boolean changed) {
 		motds.remove(channel);
 		motds.put(channel, topic);
-		parent.updateChannel(channel);
+		//parent.updateChannel(channel);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class SimplePircBot extends PircBot {
 
 	@Override
 	protected void onPart(String channel, String sender, String login, String hostname) {
-		parent.updateChannel(channel);
+		//parent.updateChannel(channel);
 		ChavaManager.getPluginManager().callEvent(ChannelPartEvent.getInstance(new ChavaUser(sender, login, hostname, null), channel));
 	}
 
