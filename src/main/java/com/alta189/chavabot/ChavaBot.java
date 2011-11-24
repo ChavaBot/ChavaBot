@@ -17,7 +17,6 @@ import com.alta189.chavabot.events.userevents.NickChangeEvent;
 
 public class ChavaBot {
 	private SimplePircBot bot = new SimplePircBot(this);
-	//private List<Channel> channels = new ArrayList<Channel>();
 	private String host;
 	private int port = 0;
 	private List<String> ajChannels = new ArrayList<String>();
@@ -104,40 +103,6 @@ public class ChavaBot {
 		if (!bot.isConnected())
 			bot.publicSetLogin(login);
 	}
-	
-	/**
-	 * Gets the channel requested
-	 * @param channel
-	 * @return Channel channel
-	 *//*
-	public Channel getChannel(String channel) {
-		for (Channel chan : channels) {
-			if (chan.equals(channel))
-				return chan;
-		}
-		return null;
-	}
-	
-	*//**
-	 * Forces an update of a channel
-	 * @param channel
-	 *//*
-	public void updateChannel(String channel) {
-		channels.remove(channel);
-		Channel chan = new Channel(channel);
-		chan.addUsers(bot.getUsers(channel));
-		chan.setTopic(bot.getMotd(channel));
-		channels.add(chan);
-	}*/
-	
-	/**
-	 * Returns a List of Channels
-	 * @return 
-	 * @return channels
-	 */
-	/*public List<Channel> getChannels() {
-		return channels;
-	}*/
 	
 	public String[] getChannels() {
 		return bot.getChannels();
