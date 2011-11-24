@@ -132,11 +132,16 @@ public class ChavaBot {
 	
 	/**
 	 * Returns a List of Channels
+	 * @return 
 	 * @return channels
 	 */
 	/*public List<Channel> getChannels() {
 		return channels;
 	}*/
+	
+	public String[] getChannels() {
+		return bot.getChannels();
+	}
 	
 	/**
 	 * Gets the host of the bot
