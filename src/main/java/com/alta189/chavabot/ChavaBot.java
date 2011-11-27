@@ -146,6 +146,7 @@ public class ChavaBot {
 	 */
 	public void sendRawLineViaQueue(String raw) {
 		SendRawLineEvent event = SendRawLineEvent.getInstance(raw);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			bot.sendRawLineViaQueue(raw);
 		}
@@ -166,6 +167,7 @@ public class ChavaBot {
 	 */
 	public void sendMessage(String target, String message) {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			bot.sendMessage(event.getTarget(), event.getMessage());
 		}
@@ -178,6 +180,7 @@ public class ChavaBot {
 	 */
 	public void sendAction(String target, String message) {
 		SendMessageEvent event = SendMessageEvent.getInstance(message, target);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			bot.sendAction(event.getTarget(), event.getMessage());
 		}
@@ -190,6 +193,7 @@ public class ChavaBot {
 	 */
 	public void sendNotice(String target, String notice) {
 		SendNoticeEvent event = SendNoticeEvent.getInstance(notice, target);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			bot.sendNotice(event.getTarget(), event.getNotice());
 		}
@@ -212,6 +216,7 @@ public class ChavaBot {
 	 */
 	public void kick(String channel, String nick, String reason) {
 		KickEvent event = KickEvent.getInstance(channel, nick, reason);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			if (event.getReason() != null) {
 				bot.kick(event.getChannel(), event.getRecipient(), event.getReason());
@@ -227,6 +232,7 @@ public class ChavaBot {
 	 */
 	public void joinChannel(String channel) {
 		JoinEvent event = JoinEvent.getInstance(channel);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			bot.joinChannel(event.getChannel());
 		}
@@ -247,6 +253,7 @@ public class ChavaBot {
 	 */
 	public void partChannel(String channel, String reason) {
 		PartEvent event = PartEvent.getInstance(channel, reason);
+		ChavaManager.getPluginManager().callEvent(event);
 		if (!event.isCancelled()) {
 			if (event.getReason() != null) {
 				bot.partChannel(event.getChannel(),event.getReason());
