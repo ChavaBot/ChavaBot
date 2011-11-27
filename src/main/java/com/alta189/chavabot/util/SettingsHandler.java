@@ -24,10 +24,11 @@ import java.util.HashMap;
 public class SettingsHandler {
 
 	private File out;
-	private Boolean cached = false;
+	private boolean cached = false;
 	private String resource = null;
 	private HashMap<String, String> cache;
 	private InputStream input = null;
+	private boolean ignoreCase = false;
 
 	/**
 	 * Constructor for the Settings/Config file.
@@ -80,10 +81,10 @@ public class SettingsHandler {
 
 	/**
 	 * Returns whether caching is enabled. <br>
-	 * See {@link #setCached(Boolean) setCached(Boolean)} for more info on caching
+	 * See {@link #setCached(boolean) setCached(boolean)} for more info on caching
 	 * @return Boolean cached
 	 */
-	public Boolean isCached() {
+	public boolean isCached() {
 		return this.cached;
 	}
 
@@ -92,12 +93,29 @@ public class SettingsHandler {
 	 * in a HashMap for quicker access. 
 	 * @param Boolean cached
 	 */
-	public void setCached(Boolean cached) {
+	public void setCached(boolean cached) {
 		this.cached = cached;
 		if (this.cached = false)
 			this.cache = null;
 	}
 	
+	/**
+	 * Returns whether ignode case is enabled. <br>
+	 * See {@link #setIgnoreCase(boolean) setIgnoreCase(boolean)} for more info on ignore case
+	 * @return Boolean cached
+	 */
+	public boolean isIgnoreCase() {
+		return ignoreCase;
+	}
+	
+	/**
+	 * When setIgnoreCase is enabled
+	 * @param ignoreCase
+	 */
+	public void setIgnoreCase(boolean ignoreCase) {
+		this.ignoreCase = ignoreCase;
+	}
+
 	/**
 	 * Returns the Settings File as a HashMap with a String key and a String value
 	 * @return HashMap<String, String> map
@@ -112,7 +130,7 @@ public class SettingsHandler {
 	 * Clears the cache and reset the file.
 	 */
 	public void reset() {
-		if (cached != null) this.cache.clear();
+		if (cache != null) this.cache.clear();
 		this.out.delete();
 		try {
 			this.out.createNewFile();
@@ -221,10 +239,18 @@ public class SettingsHandler {
 					continue;
 				String[] args = line.split(": ");
 				if (args.length < 2) {
-					result.put(args[0], null);
+					if (ignoreCase) {
+						result.put(args[0].toLowerCase(), null);
+					} else {
+						result.put(args[0], null);
+					}
 					continue;
 				}
-				result.put(args[0], args[1]);
+				if (ignoreCase) {
+					result.put(args[0].toLowerCase(), args[1]);
+				} else {
+					result.put(args[0], args[1]);
+				}
 			}
 
 		} catch (IOException ex) {
@@ -264,6 +290,7 @@ public class SettingsHandler {
 	 * @return String value
 	 */
 	public String getPropertyString(String property, String argDefault) {
+		if (ignoreCase) property = property.toLowerCase();
 		try {
 			if (this.cached) {
 				return this.cache.get(property);
@@ -283,6 +310,7 @@ public class SettingsHandler {
 	 * @return Integer value
 	 */
 	public Integer getPropertyInteger(String property, Integer argDefault) {
+		if (ignoreCase) property = property.toLowerCase();
 		try {
 			if (this.cached) {
 				return Integer.parseInt(this.cache.get(property));
@@ -302,6 +330,7 @@ public class SettingsHandler {
 	 * @return Boolean value
 	 */
 	public Boolean getPropertyBoolean(String property, Boolean argDefault) {
+		if (ignoreCase) property = property.toLowerCase();
 		try {
 			String result = null;
 			if (this.cached) {
@@ -327,6 +356,7 @@ public class SettingsHandler {
 	 * @return Double value
 	 */
 	public Double getPropertyDouble(String property, Double argDefault) {
+		if (ignoreCase) property = property.toLowerCase();
 		try {
 			String result = null;
 			if (this.cached) {
@@ -350,6 +380,7 @@ public class SettingsHandler {
 	 * @return Boolean check
 	 */
 	public Boolean checkProperty(String property) {
+		if (ignoreCase) property = property.toLowerCase();
 		String check = null;
 		try {
 			if (this.cached) {
@@ -487,6 +518,7 @@ public class SettingsHandler {
 	 * @param String property
 	 */
 	public void delete(String property) {
+		if (ignoreCase) property = property.toLowerCase();
 		HashMap<Integer, String> contents = this.getAllFileContents();
 		contents.remove(property);
 		this.flush(contents);
@@ -519,6 +551,7 @@ public class SettingsHandler {
 	 * @param Object obj
 	 */
 	public void changeProperty(String property, Object obj) {
+		if (ignoreCase) property = property.toLowerCase();
 		HashMap<Integer, String> contents = this.getAllFileContents();
 		if ((contents == null)) {
 			return;
