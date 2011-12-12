@@ -37,6 +37,18 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.avaje</groupId>
+			<artifactId>ebean</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.7.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- Resources -->
@@ -90,6 +102,8 @@
 									<include>org.yaml:snakeyaml</include>
 									<include>com.beust:jcommander</include>
 									<include>org.apache.commons:commons-io</include>
+									<include>org.avaje:ebean</include>
+									<include>org.xerial:sqlite-jdbc</include>
 								</includes>
 							</artifactSet>
 						</configuration>
