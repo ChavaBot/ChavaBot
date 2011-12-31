@@ -7,21 +7,25 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
-import org.jibble.pircbot.IrcException;
-import org.jibble.pircbot.NickAlreadyInUseException;
+import org.pircbotx.exception.IrcException;
+import org.pircbotx.exception.NickAlreadyInUseException;
+import org.pircbotx.hooks.managers.ListenerManager;
 
-import com.alta189.chavabot.plugins.Plugin;
-import com.alta189.chavabot.plugins.PluginManager;
-import com.alta189.chavabot.plugins.SimplePluginManager;
-import com.alta189.chavabot.plugins.java.JavaPluginLoader;
+import com.alta189.chavabot.event.EventManager;
+import com.alta189.chavabot.event.SimpleEventManager;
+import com.alta189.chavabot.plugin.CommonPluginLoader;
+import com.alta189.chavabot.plugin.CommonPluginManager;
+import com.alta189.chavabot.plugin.Plugin;
+import com.alta189.chavabot.plugin.PluginManager;
 
 public class ChavaManager {
 	private Logger logger = LogManager.getLogManager().getLogger("");
 	private static ChavaManager instance;
-	private SimplePluginManager pluginManager;
+	private CommonPluginManager pluginManager;
 	private String pluginFolder = "plugins";
 	private String version = null;
 	private ChavaBot bot = null;
+	private SimpleEventManager events = new SimpleEventManager();
 	
 	private ChavaManager() {
 	}
@@ -29,7 +33,7 @@ public class ChavaManager {
 	public static ChavaManager getInstance() {
 		if (instance == null) {
 			instance = new ChavaManager();
-			instance.pluginManager = new SimplePluginManager(instance);
+			instance.pluginManager = new CommonPluginManager(instance);
 		}
 		return instance;
 	}
@@ -52,7 +56,7 @@ public class ChavaManager {
 	}
 	
 	public void loadPlugins() {
-		pluginManager.registerInterface(JavaPluginLoader.class);
+		pluginManager.registerPluginLoader(CommonPluginLoader.class);
 
 		File pluginDir = new File(pluginFolder);
 		if (pluginDir.exists()) {
@@ -95,6 +99,24 @@ public class ChavaManager {
 
 	public File getUpdateFolder() {
 		return new File(pluginFolder + File.separator + "updates");
+	}
+	
+	/**
+	 * Register ChavaBot events
+	 * @return
+	 */
+	public static EventManager getEventManager() {
+		return instance.events;
+	}
+	
+	/**
+	 * Register PirBotX Listeners
+	 * @param listener
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public static ListenerManager getListenerManager() {
+		return instance.getChavaBot().getBot().getListenerManager();
 	}
 
 	public void start(Options options) throws NickAlreadyInUseException, IOException, IrcException {

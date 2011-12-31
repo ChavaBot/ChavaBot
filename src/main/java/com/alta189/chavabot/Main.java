@@ -2,8 +2,8 @@ package com.alta189.chavabot;
 
 import java.io.IOException;
 
-import org.jibble.pircbot.IrcException;
-import org.jibble.pircbot.NickAlreadyInUseException;
+import org.pircbotx.exception.IrcException;
+import org.pircbotx.exception.NickAlreadyInUseException;
 
 import com.beust.jcommander.JCommander;
 
